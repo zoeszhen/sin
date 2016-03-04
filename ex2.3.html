@@ -1,0 +1,60 @@
+<html>
+<head>
+
+<script language="javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script language="javascript" src="http://people.iola.dk/olau/flot/jquery.flot.js"></script>
+
+<script type="text/javascript">
+function loadXMLDoc()
+{
+var xmlhttp;
+var data1=document.getElementById("sin").value;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {	var arr=[];
+    	var sin_arr=[];
+    	var i=0;
+    	var j=1;
+    	
+     
+		
+		var sin= xmlhttp.responseText;
+		arr=sin.split(",").map(Number);
+		while(j<arr.length)
+		{
+			sin_arr.push([arr[i],arr[j]]);
+			i+=2;
+			j+=2;
+			
+		}
+		
+     
+		 $.plot($("#res"),[{data:sin_arr,label:"sin(x)",color:"red"}]);
+
+
+	document.getElementById("test").innerHTML=sin_arr[0];
+    }
+  }
+xmlhttp.open("GET","http://localhost:8081?data1="+encodeURIComponent(data1),false);
+xmlhttp.send();
+}
+
+</script>
+</head>
+<body>
+
+<h2>Sin(x) Calculate on server</h2>
+<button type="button" onclick="loadXMLDoc()" value="sin(x)" id="sin">Get info from server</button>
+<div id="res" style="width:600px;height:600px;"></div>
+<p id="test"></div>
+</body>
+</html>

@@ -9,13 +9,13 @@ http.createServer(function(request, response){
     var params = url.parse(request.url,true).query;
     
     var paraA=params.data1;
-    console.log("data1:"+paraA);
+    console.log("data1:"+paraA);//get data type
     var paraB=params.data2;
-	 console.log("data2:"+paraB);
+	 console.log("data2:"+paraB);//get data rage
     console.log(params);
     fig=params.toString();
 	
-	gnuplot()
+	gnuplot()// create the graphics
     .set('term jpeg')
     .set('title "Sin(x) Functions"')
     .set('xrange'+params.data2) 
@@ -29,7 +29,7 @@ http.createServer(function(request, response){
     console.log("creat pic");
      
 	var img=fs.readFileSync("out.jpeg");
- 	response.writeHead(200,{"Content-Type":"image/jpeg", "Access-Control-Allow-Origin":"*"});
+ 	response.writeHead(200,{"Content-Type":"image/jpeg", "Access-Control-Allow-Origin":"*"});//push back 
 	response.end(img,"binary");
 	
 	console.log("send pic")

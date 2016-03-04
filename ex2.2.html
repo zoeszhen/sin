@@ -5,16 +5,16 @@
 
     <script src="Ex2Client.js" charset="utf-8"></script>
     
-	<script language="javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script language="javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script language="javascript" src="http://people.iola.dk/olau/flot/jquery.flot.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-	  $("#inClient").click(function(){
+	  $("#inClient").click(function(){//push the data to sin array
 		  var sin = [];
 			    for (var i = -3.14; i < 3.14; i += 0.1) {
 			        sin.push([i, Math.sin(i)]);
 			    }
-			    $.plot($("#sin"),[{data:sin,label:"sinx",color:"red"}]);
+			    $.plot($("#sin"),[{data:sin,label:"sinx",color:"red"}]);//create the sin graphic
 			  
 	    });
 	});
